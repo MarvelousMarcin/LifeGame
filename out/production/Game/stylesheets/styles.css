@@ -1,0 +1,32 @@
+
+.button{
+    -fx-background-color: none;
+    -fx-opacity: 0.6;
+}
+
+#earthPic{
+    -fx-background-color: none;
+    -fx-opacity: 1;
+}
+
+#exitBut{
+    -fx-background-color: none;
+    -fx-opacity: .6;
+}
+
+
+.root{
+    -fx-background-color: #fefefe;
+}
+
+#mainPane{
+    -fx-background-radius: 40px;
+    -fx-font-family: 'Helvetica', Arial, sans-serif;
+
+}
+
+#leftPane{
+    -fx-background-color: #333950;
+    -fx-background-radius: 36px 0 0 36px;
+}
+
