@@ -9,6 +9,20 @@
     -fx-opacity: 1;
 }
 
+#igBut{
+    -fx-background-color: none;
+    -fx-opacity: 1;
+}
+
+#fbBut{
+    -fx-background-color: none;
+    -fx-opacity: 1;
+}
+#redBut{
+    -fx-background-color: none;
+    -fx-opacity: 1;
+}
+
 #exitBut{
     -fx-background-color: none;
     -fx-opacity: .6;

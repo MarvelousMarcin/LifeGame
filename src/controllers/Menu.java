@@ -11,7 +11,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
+import javax.swing.text.IconView;
 import javax.swing.text.html.ImageView;
+import java.awt.*;
 
 public class Menu {
 
@@ -53,7 +55,14 @@ public class Menu {
     @FXML
     private Button earthPic;
 
+    @FXML
+    private Button fbBut;
 
+    @FXML
+    private Button igBut;
+
+    @FXML
+    private Button redBut;
 
     public void initialize(){
         hideCircles();
@@ -66,6 +75,15 @@ public class Menu {
         rt.setCycleCount(Animation.INDEFINITE);
         rt.play();
 
+
+        fbBut.addEventHandler(MouseEvent.MOUSE_ENTERED, socialEvent(fbBut, SHOW));
+        fbBut.addEventHandler(MouseEvent.MOUSE_EXITED, socialEvent(fbBut, HIDE));
+
+        igBut.addEventHandler(MouseEvent.MOUSE_ENTERED, socialEvent(igBut, SHOW));
+        igBut.addEventHandler(MouseEvent.MOUSE_EXITED, socialEvent(igBut, HIDE));
+
+        redBut.addEventHandler(MouseEvent.MOUSE_ENTERED, socialEvent( redBut, SHOW));
+        redBut.addEventHandler(MouseEvent.MOUSE_EXITED, socialEvent( redBut, HIDE));
 
 
 
@@ -116,6 +134,8 @@ public class Menu {
 
         exitBut.addEventHandler(MouseEvent.MOUSE_ENTERED, exitAnim);
         exitBut.addEventHandler(MouseEvent.MOUSE_EXITED, exitAnimExit);
+
+
 
         exitBut.addEventHandler(ActionEvent.ACTION, exitAction);
 
@@ -186,6 +206,25 @@ public class Menu {
         userCir.setTranslateX(-20);
         cashCir.setTranslateX(-20);
         mainCir.setTranslateX(-20);
+    }
+
+    public EventHandler<MouseEvent> socialEvent(Button node, int mode){
+        EventHandler<MouseEvent> event = mouseEvent -> {
+            ScaleTransition st = new ScaleTransition();
+            st.setNode(node);
+            st.setCycleCount(1);
+            st.setDuration(Duration.millis(200));
+            if(mode == SHOW) {
+                st.setByX(.2);
+                st.setByY(.2);
+
+            }else{
+                st.setToX(1);
+                st.setToY(1);
+            }
+            st.play();
+        };
+        return event;
     }
 
 

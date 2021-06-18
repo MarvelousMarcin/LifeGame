@@ -110,21 +110,6 @@
       <Circle fx:id="cashCir" fill="WHITE" layoutX="-20.0" layoutY="342.0" radius="33.0" stroke="WHITE" strokeType="INSIDE" />
       <Circle fx:id="userCir" fill="WHITE" layoutX="-20.0" layoutY="439.0" radius="33.0" stroke="WHITE" strokeType="INSIDE" />
       <Circle fx:id="settCir" fill="WHITE" layoutX="-21.0" layoutY="526.0" radius="33.0" stroke="WHITE" strokeType="INSIDE" />
-      <ImageView fitHeight="77.0" fitWidth="50.0" layoutX="1107.0" layoutY="687.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/ig.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="77.0" fitWidth="50.0" layoutX="1043.0" layoutY="687.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/fb.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="50.0" layoutX="1167.0" layoutY="687.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/reddit.png" />
-         </image>
-      </ImageView>
       <Button fx:id="exitBut" layoutX="35.0" layoutY="680.0" mnemonicParsing="false" stylesheets="@../stylesheets/styles.css">
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -134,5 +119,52 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button fx:id="fbBut" layoutX="990.0" layoutY="683.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="60.0" stylesheets="@../stylesheets/styles.css">
+         <graphic>
+            <ImageView fx:id="fb" fitHeight="77.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/fb.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="redBut" layoutX="1153.0" layoutY="683.0" mnemonicParsing="false" stylesheets="@../stylesheets/styles.css">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/reddit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="igBut" layoutX="1071.0" layoutY="683.0" mnemonicParsing="false" stylesheets="@../stylesheets/styles.css">
+         <graphic>
+            <ImageView fitHeight="77.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/ig.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fitHeight="106.0" fitWidth="50.0" layoutX="1005.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/cash.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="50.0" layoutX="843.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/health.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="907.0" layoutY="36.0" text="100">
+         <font>
+            <Font name="Rubik-Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="1071.0" layoutY="35.0" text="1000">
+         <font>
+            <Font name="Rubik-Bold" size="25.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
