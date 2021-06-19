@@ -35,14 +35,14 @@ public class Enemy{
         return currentHealth;
     }
 
+    public int getLoot(){
+        return loot;
+    }
+
     public ProgressBar getHealthBar(){
         ProgressBar progressBar = new ProgressBar();
         progressBar.setProgress((float)currentHealth/maxHealth);
         return progressBar;
-    }
-
-    public int getDmg() {
-        return dmg;
     }
 
     public Image getEnemyPic(){

@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
@@ -67,10 +68,7 @@ public class Menu {
     private Button redBut;
 
     @FXML
-    private ProgressBar progressBar;
-
-    @FXML
-    private Pane gamePane;
+    private ProgressBar progressBarLabel;
 
     @FXML
     private Label playerHp;
@@ -78,8 +76,31 @@ public class Menu {
     @FXML
     private Label playerMoney;
 
+    @FXML
+    private Pane gamePane;
+
+    @FXML
+    private Label levelLabel;
+
+    @FXML
+    private Label describeLabel;
+
+    @FXML
+    private Label welcomeLabel;
+
+    @FXML
+    private ImageView pic1;
+
+    @FXML
+    private ImageView pic2;
+
+
+
     public void initialize(){
         hideCircles();
+
+        pic1Anim();
+        pic2Anim();
 
         RotateTransition rt = new RotateTransition();
         rt.setNode(earthPic);
@@ -151,6 +172,11 @@ public class Menu {
     //Main page button in menu
     @FXML
     public void menu() {
+
+        describeLabel.setVisible(false);
+        welcomeLabel.setVisible(false);
+
+        mainBut.setDisable(true);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Game.fxml"));
         try {
             loader.load();
@@ -158,6 +184,7 @@ public class Menu {
             e.printStackTrace();
         }
         ((Game)loader.getController()).setPlayer(player);
+        ((Game)loader.getController()).setMenu(this);
         gamePane.getChildren().add(((Game)loader.getController()).getGameContent());
 
     }
@@ -244,5 +271,48 @@ public class Menu {
         this.player = player;
     }
 
+    public void updateUserStats(Player player){
+        playerMoney.setText(player.getMoney()+"");
+        playerHp.setText(player.getHealth()+"");
+        levelLabel.setText("Level: "+player.getLevel());
+
+        this.progressBarLabel.setProgress(player.levelBar().getProgress());
+    }
+
+    public void pic1Anim(){
+        TranslateTransition tt = new TranslateTransition();
+        tt.setNode(pic1);
+        tt.setDuration(Duration.seconds(2));
+        tt.setCycleCount(Animation.INDEFINITE);
+        tt.setByY(-10);
+        tt.setInterpolator(Interpolator.LINEAR);
+        tt.setAutoReverse(true);
+        tt.play();
+    }
+
+    public void pic2Anim(){
+        TranslateTransition tt = new TranslateTransition();
+        tt.setNode(pic2);
+        tt.setDuration(Duration.seconds(2));
+        tt.setCycleCount(Animation.INDEFINITE);
+        tt.setByY(20);
+        tt.setByX(20);
+        tt.setInterpolator(Interpolator.LINEAR);
+        tt.setAutoReverse(true);
+
+        RotateTransition rt = new RotateTransition();
+        rt.setNode(pic2);
+        rt.setDuration(Duration.seconds(4));
+        rt.setCycleCount(Animation.INDEFINITE);
+        rt.setByAngle(30);
+        rt.setInterpolator(Interpolator.LINEAR);
+        rt.setAutoReverse(true);
+
+
+
+        ParallelTransition pt = new ParallelTransition();
+        pt.getChildren().addAll(tt,rt);
+        pt.play();
+    }
 
 }

@@ -47,9 +47,13 @@
     -fx-background-radius: 36px 0 0 36px;
 }
 
-#progressBar{
+#progressBarLabel{
     -fx-background-color: white;
     -fx-box-shadow: 5px 10px;
+    -fx-text-box-border: #333950;
+    -fx-accent: #6DECB9;
+    -fx-control-inner-background: #333950;
+
 }
 
 #enemyBut{
@@ -58,5 +62,10 @@
 
 }
 
+#enemyHealthBar{
+    -fx-text-box-border: none;
+    -fx-accent: red;
+    -fx-control-inner-background: none;
+}
 
 

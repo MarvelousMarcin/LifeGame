@@ -167,12 +167,44 @@
             <Font name="Rubik-Bold" size="25.0" />
          </font>
       </Label>
-      <ProgressBar fx:id="progressBar" layoutX="520.0" layoutY="47.0" prefWidth="200.0" progress="0.27" />
+      <ProgressBar fx:id="progressBarLabel" layoutX="520.0" layoutY="47.0" prefWidth="200.0" progress="0.0" />
       <Label fx:id="levelLabel" layoutX="414.0" layoutY="41.0" text="Level: 1">
          <font>
             <Font name="Rubik-Bold" size="24.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="gamePane" layoutX="332.0" layoutY="174.0" prefHeight="518.0" prefWidth="624.0" />
+      <AnchorPane fx:id="gamePane" layoutX="341.0" layoutY="180.0" prefHeight="518.0" prefWidth="624.0">
+         <children>
+            <Label fx:id="welcomeLabel" layoutX="112.0" layoutY="87.0" text="Welcome my hero!">
+               <font>
+                  <Font name="Rubik-Bold" size="44.0" />
+               </font>
+            </Label>
+            <Label fx:id="describeLabel" layoutX="2.0" layoutY="95.0" prefHeight="250.0" prefWidth="620.0" text="You are about to enter the cruel word of evil companies and CEOs. Our planet is suffering because of them. You need to stop them. You are our last hope. You can't fail. Find Bill Gates and stop him. CLICK HOME BUTTON TO BEGIN" wrapText="true">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <ImageView fx:id="pic1" fitHeight="265.0" fitWidth="266.0" layoutX="148.0" layoutY="85.0">
+         <image>
+            <Image url="@../img/space.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pic2" fitHeight="233.0" fitWidth="236.0" layoutX="985.0" layoutY="109.0">
+         <image>
+            <Image url="@../img/space2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="233.0" fitWidth="225.0" layoutX="169.0" layoutY="526.0">
+         <image>
+            <Image url="@../img/space4.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="993.0" layoutY="459.0">
+         <image>
+            <Image url="@../img/space3.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
