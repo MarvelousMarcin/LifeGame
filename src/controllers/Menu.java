@@ -1,26 +1,28 @@
 package controllers;
 
 import javafx.animation.*;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-import javax.swing.text.IconView;
-import javax.swing.text.html.ImageView;
-import java.awt.*;
+import java.io.IOException;
 
 public class Menu {
 
     private final static int SHOW = 1;
     private final static int HIDE = 0;
 
-
+    private Player player;
 
     @FXML
     private Button mainBut;
@@ -64,6 +66,18 @@ public class Menu {
     @FXML
     private Button redBut;
 
+    @FXML
+    private ProgressBar progressBar;
+
+    @FXML
+    private Pane gamePane;
+
+    @FXML
+    private Label playerHp;
+
+    @FXML
+    private Label playerMoney;
+
     public void initialize(){
         hideCircles();
 
@@ -85,9 +99,6 @@ public class Menu {
         redBut.addEventHandler(MouseEvent.MOUSE_ENTERED, socialEvent( redBut, SHOW));
         redBut.addEventHandler(MouseEvent.MOUSE_EXITED, socialEvent( redBut, HIDE));
 
-
-
-
         EventHandler<ActionEvent> exitAction = actionEvent -> System.exit(0);
 
         settBut.addEventHandler(MouseEvent.MOUSE_ENTERED,mouseAnimation(settBut,settCir,SHOW));
@@ -96,6 +107,7 @@ public class Menu {
 
         mainBut.addEventHandler(MouseEvent.MOUSE_ENTERED,mouseAnimation(mainBut,mainCir,SHOW));
         mainBut.addEventHandler(MouseEvent.MOUSE_EXITED,mouseAnimation(mainBut,mainCir,HIDE));
+        mainBut.setOnAction(e->menu());
 
         userBut.addEventHandler(MouseEvent.MOUSE_ENTERED,mouseAnimation(userBut,userCir,SHOW));
         userBut.addEventHandler(MouseEvent.MOUSE_EXITED,mouseAnimation(userBut,userCir,HIDE));
@@ -130,22 +142,23 @@ public class Menu {
         };
 
 
-
-
         exitBut.addEventHandler(MouseEvent.MOUSE_ENTERED, exitAnim);
         exitBut.addEventHandler(MouseEvent.MOUSE_EXITED, exitAnimExit);
-
-
-
         exitBut.addEventHandler(ActionEvent.ACTION, exitAction);
-
 
     }
 
     //Main page button in menu
     @FXML
-    public void menu(){
-
+    public void menu() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Game.fxml"));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ((Game)loader.getController()).setPlayer(player);
+        gamePane.getChildren().add(((Game)loader.getController()).getGameContent());
 
     }
 
@@ -225,6 +238,10 @@ public class Menu {
             st.play();
         };
         return event;
+    }
+
+    public void setPlayer(Player player){
+        this.player = player;
     }
 
 

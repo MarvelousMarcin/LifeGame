@@ -5,15 +5,17 @@ public class Player {
     private int level;
     private int health;
     private int money;
-    private int dmgDealt;
-    private int monstersKilled;
+    private int dmg;
 
     public Player(){
-        level = 0;
+        level = 1;
         health = 100;
         money = 1000;
-        dmgDealt = 0;
-        monstersKilled = 0;
+        dmg = 10;
+    }
+
+    public int attackValue(){
+        return dmg;
     }
 
     public int getHealth(){
@@ -22,6 +24,10 @@ public class Player {
 
     public int getMoney(){
         return money;
+    }
+
+    public int getDmg(){
+        return dmg;
     }
 
     public void setHealth(int health){
