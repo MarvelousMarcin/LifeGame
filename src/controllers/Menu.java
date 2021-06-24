@@ -94,6 +94,19 @@ public class Menu {
     @FXML
     private ImageView pic2;
 
+    @FXML
+    private ImageView pic3;
+
+    @FXML
+    private Label dmgLabel;
+
+    @FXML
+    private ImageView pic4;
+
+    private final FXMLLoader loaderCash = new FXMLLoader(getClass().getResource("/fxml/Shop.fxml"));;
+
+    private boolean fistTime = false;
+
 
 
     public void initialize(){
@@ -135,6 +148,8 @@ public class Menu {
 
         cashBut.addEventHandler(MouseEvent.MOUSE_ENTERED,mouseAnimation(cashBut,cashCir,SHOW));
         cashBut.addEventHandler(MouseEvent.MOUSE_EXITED,mouseAnimation(cashBut,cashCir,HIDE));
+        cashBut.setOnAction(e-> cash());
+
 
         EventHandler<MouseEvent> exitAnim = mouseEvent -> {
             FadeTransition fd = new FadeTransition();
@@ -173,10 +188,9 @@ public class Menu {
     @FXML
     public void menu() {
 
-        describeLabel.setVisible(false);
-        welcomeLabel.setVisible(false);
+        hidePictures();
+        hideHelper();
 
-        mainBut.setDisable(true);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Game.fxml"));
         try {
             loader.load();
@@ -185,6 +199,7 @@ public class Menu {
         }
         ((Game)loader.getController()).setPlayer(player);
         ((Game)loader.getController()).setMenu(this);
+        gamePane.getChildren().clear();
         gamePane.getChildren().add(((Game)loader.getController()).getGameContent());
 
     }
@@ -192,6 +207,21 @@ public class Menu {
     //Cash page button in menu
     @FXML
     public void cash(){
+        hidePictures();
+        //When we open the shop for the first time we have to load it, then we just open existing source
+        if(!fistTime) {
+            try {
+                loaderCash.load();
+                fistTime = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        ((Shop)loaderCash.getController()).setPlayer(player);
+        ((Shop)loaderCash.getController()).setMenu(this);
+
+        gamePane.getChildren().clear();
+        gamePane.getChildren().add(((Shop)loaderCash.getController()).getShopPane());
 
     }
 
@@ -272,6 +302,8 @@ public class Menu {
     }
 
     public void updateUserStats(Player player){
+
+        dmgLabel.setText(player.getDmg()+"");
         playerMoney.setText(player.getMoney()+"");
         playerHp.setText(player.getHealth()+"");
         levelLabel.setText("Level: "+player.getLevel());
@@ -315,4 +347,15 @@ public class Menu {
         pt.play();
     }
 
+    private void hideHelper(){
+        describeLabel.setVisible(false);
+        welcomeLabel.setVisible(false);
+    }
+
+    private void hidePictures(){
+        pic1.setVisible(false);
+        pic2.setVisible(false);
+        pic3.setVisible(false);
+        pic4.setVisible(false);
+    }
 }

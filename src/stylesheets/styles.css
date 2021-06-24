@@ -68,4 +68,24 @@
     -fx-control-inner-background: none;
 }
 
+.upgBut{
+    -fx-text-fill: white;
+    -fx-background-color: #3FC5F0;
+    -fx-border-radius: 50px;
 
+}
+
+.upgBut:hover{
+    -fx-text-fill: white;
+    -fx-background-color: #6DECB9;
+    -fx-border-radius: 50px;
+
+}
+#shopPane{
+    -fx-font-family: Rubik;
+    -fx-font-size: 17px;
+}
+.downcost{
+    -fx-font-size: 12px;
+
+}

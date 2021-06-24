@@ -15,14 +15,14 @@ public class Player {
         level = 1;
         playerExp = 0;
         health = 100;
-        money = 1000;
+        money = 1000000;
         dmg = 10;
     }
 
     public void levelUp(){
         level += 1;
         playerExp = playerExp-nextLevelExpNeeded;
-        nextLevelExpNeeded += 100;
+        nextLevelExpNeeded += 500;
     }
 
     public boolean checkIfNextLevel(){
@@ -60,7 +60,23 @@ public class Player {
     }
 
     public void setMoney(int money){
-        this.health = money;
+        this.money = money;
+    }
+
+    public void addDmg(int value){
+        this.dmg += value;
+    }
+
+    public void addLoot(int value){
+        //TODO zrobić loot
+    }
+
+    public void addHealth(int value){
+        this.health += value;
+    }
+
+    public void takeMoney(int value){
+        this.money -= value;
     }
 
     public int getLevel(){

@@ -62,6 +62,7 @@ public class Game {
         EventHandler<ActionEvent> playerAttack = actionEvent -> {
             int playerDmg = player.getDmg();
             enemy.getDmg(playerDmg);
+            System.out.println(enemy.getHealth());
             if(enemy.getHealth() <= 0){
                 player.addExp(enemy.getExp());
                 player.addMoney(enemy.getLoot());
@@ -84,7 +85,7 @@ public class Game {
 
     private Enemy generateEnemy(){
         Random random = new Random();
-        return new Enemy(random.nextInt(50),random.nextInt(200),enemyPictures.get(random.nextInt(enemyPictures.size())),300,100);
+        return new Enemy(random.nextInt(50),random.nextInt(200),enemyPictures.get(random.nextInt(enemyPictures.size())),300,1000);
     }
 
     private void loadEnemy(){

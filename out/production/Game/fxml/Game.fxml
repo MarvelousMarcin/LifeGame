@@ -5,10 +5,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="gameContent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="566.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Game">
+<AnchorPane fx:id="gameContent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Game">
    <children>
-      <ProgressBar fx:id="enemyHealthBar" layoutX="183.0" layoutY="120.0" prefHeight="30.0" prefWidth="200.0" progress="1.0" />
-      <Button fx:id="enemyBut" layoutX="183.0" layoutY="176.0" mnemonicParsing="false">
+      <ProgressBar fx:id="enemyHealthBar" layoutX="304.0" layoutY="82.0" prefHeight="30.0" prefWidth="200.0" progress="1.0" />
+      <Button fx:id="enemyBut" layoutX="303.0" layoutY="150.0" mnemonicParsing="false">
          <graphic>
             <ImageView fx:id="enemyP" fitHeight="184.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>

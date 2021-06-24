@@ -3,7 +3,7 @@ package controllers;
 
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 
 public class Enemy{
 
