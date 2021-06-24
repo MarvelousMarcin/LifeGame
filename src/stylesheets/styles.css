@@ -12,22 +12,25 @@
 #igBut{
     -fx-background-color: none;
     -fx-opacity: 1;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);
 }
 
 #fbBut{
     -fx-background-color: none;
     -fx-opacity: 1;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);
+
 }
 #redBut{
     -fx-background-color: none;
     -fx-opacity: 1;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);
 }
 
 #exitBut{
     -fx-background-color: none;
     -fx-opacity: .6;
 }
-
 
 .root{
     -fx-background-color: #fefefe;
@@ -44,3 +47,45 @@
     -fx-background-radius: 36px 0 0 36px;
 }
 
+#progressBarLabel{
+    -fx-background-color: white;
+    -fx-box-shadow: 5px 10px;
+    -fx-text-box-border: #333950;
+    -fx-accent: #6DECB9;
+    -fx-control-inner-background: #333950;
+
+}
+
+#enemyBut{
+    -fx-background-color: none;
+    -fx-opacity: 1;
+
+}
+
+#enemyHealthBar{
+    -fx-text-box-border: none;
+    -fx-accent: red;
+    -fx-control-inner-background: none;
+}
+
+.upgBut{
+    -fx-text-fill: white;
+    -fx-background-color: #3FC5F0;
+    -fx-border-radius: 50px;
+
+}
+
+.upgBut:hover{
+    -fx-text-fill: white;
+    -fx-background-color: #6DECB9;
+    -fx-border-radius: 50px;
+
+}
+#shopPane{
+    -fx-font-family: Rubik;
+    -fx-font-size: 17px;
+}
+.downcost{
+    -fx-font-size: 12px;
+
+}

@@ -1,26 +1,29 @@
 package controllers;
 
 import javafx.animation.*;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-import javax.swing.text.IconView;
-import javax.swing.text.html.ImageView;
-import java.awt.*;
+import java.io.IOException;
 
 public class Menu {
 
     private final static int SHOW = 1;
     private final static int HIDE = 0;
 
-
+    private Player player;
 
     @FXML
     private Button mainBut;
@@ -64,8 +67,53 @@ public class Menu {
     @FXML
     private Button redBut;
 
+    @FXML
+    private ProgressBar progressBarLabel;
+
+    @FXML
+    private Label playerHp;
+
+    @FXML
+    private Label playerMoney;
+
+    @FXML
+    private Pane gamePane;
+
+    @FXML
+    private Label levelLabel;
+
+    @FXML
+    private Label describeLabel;
+
+    @FXML
+    private Label welcomeLabel;
+
+    @FXML
+    private ImageView pic1;
+
+    @FXML
+    private ImageView pic2;
+
+    @FXML
+    private ImageView pic3;
+
+    @FXML
+    private Label dmgLabel;
+
+    @FXML
+    private ImageView pic4;
+
+    private final FXMLLoader loaderCash = new FXMLLoader(getClass().getResource("/fxml/Shop.fxml"));;
+
+    private boolean fistTime = false;
+
+
+
     public void initialize(){
         hideCircles();
+
+        pic1Anim();
+        pic2Anim();
 
         RotateTransition rt = new RotateTransition();
         rt.setNode(earthPic);
@@ -85,9 +133,6 @@ public class Menu {
         redBut.addEventHandler(MouseEvent.MOUSE_ENTERED, socialEvent( redBut, SHOW));
         redBut.addEventHandler(MouseEvent.MOUSE_EXITED, socialEvent( redBut, HIDE));
 
-
-
-
         EventHandler<ActionEvent> exitAction = actionEvent -> System.exit(0);
 
         settBut.addEventHandler(MouseEvent.MOUSE_ENTERED,mouseAnimation(settBut,settCir,SHOW));
@@ -96,12 +141,15 @@ public class Menu {
 
         mainBut.addEventHandler(MouseEvent.MOUSE_ENTERED,mouseAnimation(mainBut,mainCir,SHOW));
         mainBut.addEventHandler(MouseEvent.MOUSE_EXITED,mouseAnimation(mainBut,mainCir,HIDE));
+        mainBut.setOnAction(e->menu());
 
         userBut.addEventHandler(MouseEvent.MOUSE_ENTERED,mouseAnimation(userBut,userCir,SHOW));
         userBut.addEventHandler(MouseEvent.MOUSE_EXITED,mouseAnimation(userBut,userCir,HIDE));
 
         cashBut.addEventHandler(MouseEvent.MOUSE_ENTERED,mouseAnimation(cashBut,cashCir,SHOW));
         cashBut.addEventHandler(MouseEvent.MOUSE_EXITED,mouseAnimation(cashBut,cashCir,HIDE));
+        cashBut.setOnAction(e-> cash());
+
 
         EventHandler<MouseEvent> exitAnim = mouseEvent -> {
             FadeTransition fd = new FadeTransition();
@@ -130,28 +178,50 @@ public class Menu {
         };
 
 
-
-
         exitBut.addEventHandler(MouseEvent.MOUSE_ENTERED, exitAnim);
         exitBut.addEventHandler(MouseEvent.MOUSE_EXITED, exitAnimExit);
-
-
-
         exitBut.addEventHandler(ActionEvent.ACTION, exitAction);
-
 
     }
 
     //Main page button in menu
     @FXML
-    public void menu(){
+    public void menu() {
 
+        hidePictures();
+        hideHelper();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Game.fxml"));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ((Game)loader.getController()).setPlayer(player);
+        ((Game)loader.getController()).setMenu(this);
+        gamePane.getChildren().clear();
+        gamePane.getChildren().add(((Game)loader.getController()).getGameContent());
 
     }
 
     //Cash page button in menu
     @FXML
     public void cash(){
+        hidePictures();
+        //When we open the shop for the first time we have to load it, then we just open existing source
+        if(!fistTime) {
+            try {
+                loaderCash.load();
+                fistTime = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        ((Shop)loaderCash.getController()).setPlayer(player);
+        ((Shop)loaderCash.getController()).setMenu(this);
+
+        gamePane.getChildren().clear();
+        gamePane.getChildren().add(((Shop)loaderCash.getController()).getShopPane());
 
     }
 
@@ -227,5 +297,65 @@ public class Menu {
         return event;
     }
 
+    public void setPlayer(Player player){
+        this.player = player;
+    }
 
+    public void updateUserStats(Player player){
+
+        dmgLabel.setText(player.getDmg()+"");
+        playerMoney.setText(player.getMoney()+"");
+        playerHp.setText(player.getHealth()+"");
+        levelLabel.setText("Level: "+player.getLevel());
+
+        this.progressBarLabel.setProgress(player.levelBar().getProgress());
+    }
+
+    public void pic1Anim(){
+        TranslateTransition tt = new TranslateTransition();
+        tt.setNode(pic1);
+        tt.setDuration(Duration.seconds(2));
+        tt.setCycleCount(Animation.INDEFINITE);
+        tt.setByY(-10);
+        tt.setInterpolator(Interpolator.LINEAR);
+        tt.setAutoReverse(true);
+        tt.play();
+    }
+
+    public void pic2Anim(){
+        TranslateTransition tt = new TranslateTransition();
+        tt.setNode(pic2);
+        tt.setDuration(Duration.seconds(2));
+        tt.setCycleCount(Animation.INDEFINITE);
+        tt.setByY(20);
+        tt.setByX(20);
+        tt.setInterpolator(Interpolator.LINEAR);
+        tt.setAutoReverse(true);
+
+        RotateTransition rt = new RotateTransition();
+        rt.setNode(pic2);
+        rt.setDuration(Duration.seconds(4));
+        rt.setCycleCount(Animation.INDEFINITE);
+        rt.setByAngle(30);
+        rt.setInterpolator(Interpolator.LINEAR);
+        rt.setAutoReverse(true);
+
+
+
+        ParallelTransition pt = new ParallelTransition();
+        pt.getChildren().addAll(tt,rt);
+        pt.play();
+    }
+
+    private void hideHelper(){
+        describeLabel.setVisible(false);
+        welcomeLabel.setVisible(false);
+    }
+
+    private void hidePictures(){
+        pic1.setVisible(false);
+        pic2.setVisible(false);
+        pic3.setVisible(false);
+        pic4.setVisible(false);
+    }
 }

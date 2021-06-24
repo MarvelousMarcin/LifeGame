@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="shopPane" prefHeight="493.0" prefWidth="808.0" stylesheets="@../stylesheets/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Shop">
+   <children>
+      <Label layoutX="350.0" layoutY="32.0" text="Shop">
+         <font>
+            <Font name="Rubik-Bold" size="42.0" />
+         </font>
+      </Label>
+      <Circle fx:id="dmgCir1" fill="WHITE" layoutX="171.0" layoutY="166.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="dmgCir2" fill="WHITE" layoutX="237.0" layoutY="166.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="dmgCir3" fill="WHITE" layoutX="298.0" layoutY="166.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="dmgCir4" fill="WHITE" layoutX="357.0" layoutY="166.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="dmgCir5" fill="WHITE" layoutX="415.0" layoutY="166.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="dmgCir6" fill="WHITE" layoutX="474.0" layoutY="166.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="healthUpCir1" fill="WHITE" layoutX="171.0" layoutY="227.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="healthUpCir2" fill="WHITE" layoutX="237.0" layoutY="227.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="healthUpCir3" fill="WHITE" layoutX="298.0" layoutY="227.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="healthUpCir4" fill="WHITE" layoutX="357.0" layoutY="227.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="healthUpCir5" fill="WHITE" layoutX="415.0" layoutY="227.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="healthUpCir6" fill="WHITE" layoutX="474.0" layoutY="227.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="lootCir1" fill="WHITE" layoutX="171.0" layoutY="286.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="lootCir2" fill="WHITE" layoutX="237.0" layoutY="286.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="lootCir3" fill="WHITE" layoutX="298.0" layoutY="286.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="lootCir4" fill="WHITE" layoutX="357.0" layoutY="286.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="lootCir5" fill="WHITE" layoutX="415.0" layoutY="286.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="lootCir6" fill="WHITE" layoutX="474.0" layoutY="286.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button fx:id="dmgUpgBut" layoutX="546.0" layoutY="141.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="81.0" styleClass="upgBut" text="Upgrade">
+         <font>
+            <Font name="Rubik-Bold" size="12.0" />
+         </font></Button>
+      <Circle fx:id="expCir1" fill="WHITE" layoutX="171.0" layoutY="349.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="expCir2" fill="WHITE" layoutX="237.0" layoutY="349.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="expCir3" fill="WHITE" layoutX="298.0" layoutY="349.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="expCir4" fill="WHITE" layoutX="357.0" layoutY="349.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="expCir5" fill="WHITE" layoutX="415.0" layoutY="349.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="expCir6" fill="WHITE" layoutX="474.0" layoutY="349.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label layoutX="42.0" layoutY="154.0" stylesheets="@../stylesheets/styles.css" text="Damage">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="48.0" layoutY="214.0" stylesheets="@../stylesheets/styles.css" text="Health">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="274.0" stylesheets="@../stylesheets/styles.css" text="Loot">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="337.0" stylesheets="@../stylesheets/styles.css" text="Experience">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Button fx:id="healthUpgBut" layoutX="546.0" layoutY="206.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="81.0" styleClass="upgBut" text="Upgrade">
+         <font>
+            <Font name="Rubik-Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="lootUpgBut" layoutX="546.0" layoutY="266.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="81.0" styleClass="upgBut" text="Upgrade">
+         <font>
+            <Font name="Rubik-Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="expUpgBut" layoutX="546.0" layoutY="329.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="81.0" styleClass="upgBut" text="Upgrade">
+         <font>
+            <Font name="Rubik-Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="157.0" layoutY="108.0" text="+10" />
+      <Label layoutX="227.0" layoutY="108.0" text="+30" />
+      <Label layoutX="288.0" layoutY="108.0" text="+60" />
+      <Label layoutX="346.0" layoutY="108.0" text="+80" />
+      <Label layoutX="405.0" layoutY="108.0" text="+100" />
+      <Label layoutX="464.0" layoutY="108.0" text="+150" />
+      <Label layoutX="152.0" layoutY="387.0" styleClass="downcost" text="3000g" />
+      <Label layoutX="217.0" layoutY="387.0" styleClass="downcost" text="6000g" />
+      <Label layoutX="275.0" layoutY="387.0" styleClass="downcost" text="12000g" />
+      <Label layoutX="334.0" layoutY="387.0" styleClass="downcost" text="15000g" />
+      <Label layoutX="390.0" layoutY="387.0" styleClass="downcost" text="20000g" />
+      <Label layoutX="450.0" layoutY="387.0" styleClass="downcost" text="25000g" />
+      <ImageView fitHeight="116.0" fitWidth="109.0" layoutX="23.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" rotate="-29.7">
+         <image>
+            <Image url="@../img/dollar2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="116.0" fitWidth="109.0" layoutX="623.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" rotate="-148.2">
+         <image>
+            <Image url="@../img/dollar2.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
