@@ -1,15 +1,18 @@
 package controllers;
 
-import javafx.animation.Animation;
-import javafx.animation.RotateTransition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.CubicCurveTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -37,6 +40,9 @@ public class Game {
     @FXML
     private ProgressBar enemyHealthBar;
 
+    @FXML
+    private Label enemyAttackLabel;
+
     public void initialize(){
         enemyAnim();
         Image imageApple = new Image("/img/apple.png");
@@ -60,9 +66,41 @@ public class Game {
         enemyP.setImage(enemy.getEnemyPic());
 
         EventHandler<ActionEvent> playerAttack = actionEvent -> {
+            Random random = new Random();
+            int randVal = random.nextInt(20);
+            if(randVal == 0){
+                enemyBut.setDisable(true);
+
+                enemyAttackLabel.setText("-"+enemy.getEnemyDmg());
+
+                FadeTransition fadeTransition = new FadeTransition();
+                fadeTransition.setNode(enemyAttackLabel);
+                fadeTransition.setDuration(Duration.millis(300));
+                fadeTransition.setCycleCount(2);
+                fadeTransition.setFromValue(0);
+                fadeTransition.setToValue(1);
+                fadeTransition.setAutoReverse(true);
+                fadeTransition.play();
+
+
+                TranslateTransition tt = new TranslateTransition();
+                tt.setNode(enemyP);
+                tt.setDuration(Duration.millis(200));
+                tt.setAutoReverse(true);
+                tt.setInterpolator(Interpolator.LINEAR);
+                tt.setCycleCount(2);
+                tt.setFromY(enemyP.getY());
+                tt.setToY(200);
+                tt.play();
+
+                player.getHit(enemy.getEnemyDmg());
+                menu.updateUserStats(player);
+
+            }
+            enemyBut.setDisable(false);
+
             int playerDmg = player.getDmg();
             enemy.getDmg(playerDmg);
-            System.out.println(enemy.getHealth());
             if(enemy.getHealth() <= 0){
                 player.addExp(enemy.getExp());
                 player.addMoney(enemy.getLoot());
@@ -85,7 +123,7 @@ public class Game {
 
     private Enemy generateEnemy(){
         Random random = new Random();
-        return new Enemy(random.nextInt(50),random.nextInt(200),enemyPictures.get(random.nextInt(enemyPictures.size())),300,1000);
+        return new Enemy(10,300,enemyPictures.get(random.nextInt(enemyPictures.size())),300,1000);
     }
 
     private void loadEnemy(){

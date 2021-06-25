@@ -89,3 +89,7 @@
     -fx-font-size: 12px;
 
 }
+.attackLabel{
+    -fx-text-fill: red;
+    -fx-opacity: 0;
+}
