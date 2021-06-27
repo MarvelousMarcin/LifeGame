@@ -89,3 +89,19 @@
     -fx-font-size: 12px;
 
 }
+.attackLabel{
+    -fx-text-fill: red;
+    -fx-opacity: 0;
+}
+
+.shopItemBut{
+    -fx-text-fill: white;
+    -fx-background-color: #6DECB9;
+    -fx-border-radius: 50px;
+}
+
+.shopItemBut:hover{
+    -fx-text-fill: white;
+    -fx-background-color: #3FC5F0;
+    -fx-border-radius: 50px;
+}
