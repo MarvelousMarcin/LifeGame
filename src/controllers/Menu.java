@@ -145,6 +145,7 @@ public class Menu {
 
         userBut.addEventHandler(MouseEvent.MOUSE_ENTERED,mouseAnimation(userBut,userCir,SHOW));
         userBut.addEventHandler(MouseEvent.MOUSE_EXITED,mouseAnimation(userBut,userCir,HIDE));
+        userBut.setOnAction(e-> user());
 
         cashBut.addEventHandler(MouseEvent.MOUSE_ENTERED,mouseAnimation(cashBut,cashCir,SHOW));
         cashBut.addEventHandler(MouseEvent.MOUSE_EXITED,mouseAnimation(cashBut,cashCir,HIDE));
@@ -228,6 +229,22 @@ public class Menu {
     //User page button in menu
     @FXML
     public void user(){
+        hidePictures();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ItemShop.fxml"));
+
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ((ItemShop)loader.getController()).setPlayer(player);
+        ((ItemShop)loader.getController()).setMenu(this);
+
+
+
+        gamePane.getChildren().clear();
+        gamePane.getChildren().add(((ItemShop)loader.getController()).getItemShopPane());
 
     }
 

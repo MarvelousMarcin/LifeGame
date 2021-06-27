@@ -55,6 +55,10 @@ public class Player {
         return dmg;
     }
 
+    public void getHit(int value){
+        this.health -= value;
+    }
+
     public void setHealth(int health){
         this.health = health;
     }

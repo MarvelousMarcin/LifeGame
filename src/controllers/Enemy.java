@@ -31,6 +31,10 @@ public class Enemy{
         this.currentHealth -= dmg;
     }
 
+    public int getEnemyDmg(){
+        return dmg;
+    }
+
     public int getHealth(){
         return currentHealth;
     }
