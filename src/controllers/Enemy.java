@@ -7,12 +7,12 @@ import javafx.scene.image.Image;
 
 public class Enemy{
 
-    private int maxHealth;
+    private final int maxHealth;
     private int currentHealth;
-    private int dmg;
+    private final int dmg;
     private final Image ePic;
     private final int exp;
-    private int loot;
+    private final int loot;
 
     public Enemy(int dmg, int health, Image ePic, int exp, int loot){
         this.maxHealth = health;

@@ -168,7 +168,7 @@
          </font>
       </Label>
       <ProgressBar fx:id="progressBarLabel" layoutX="520.0" layoutY="47.0" prefWidth="200.0" progress="0.0" />
-      <Label fx:id="levelLabel" layoutX="414.0" layoutY="41.0" text="Level: 1">
+      <Label fx:id="levelLabel" layoutX="401.0" layoutY="41.0" text="Level: 1">
          <font>
             <Font name="Rubik-Bold" size="24.0" />
          </font>

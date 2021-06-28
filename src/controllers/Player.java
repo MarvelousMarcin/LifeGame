@@ -15,8 +15,8 @@ public class Player {
         level = 1;
         playerExp = 0;
         health = 100;
-        money = 1000000;
-        dmg = 10;
+        money = 100000;
+        dmg = 20;
     }
 
     public void levelUp(){

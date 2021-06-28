@@ -202,7 +202,6 @@ public class Menu {
         ((Game)loader.getController()).setMenu(this);
         gamePane.getChildren().clear();
         gamePane.getChildren().add(((Game)loader.getController()).getGameContent());
-
     }
 
     //Cash page button in menu
@@ -240,7 +239,6 @@ public class Menu {
 
         ((ItemShop)loader.getController()).setPlayer(player);
         ((ItemShop)loader.getController()).setMenu(this);
-
 
 
         gamePane.getChildren().clear();

@@ -22,11 +22,34 @@ public class Game {
 
     private Player player;
 
-    private ArrayList<Image> enemyPictures = new ArrayList<>();
+    private final ArrayList<Image> enemyPictures = new ArrayList<>();
 
     private Enemy enemy;
 
     private Menu menu;
+
+    public static void setExpEnemy(int expEnemy) {
+        Game.expEnemy = expEnemy;
+    }
+
+    public static void setLootEnemy(int lootEnemy) {
+        Game.lootEnemy = lootEnemy;
+    }
+
+    public static int getExpEnemy() {
+        return expEnemy;
+    }
+
+    public static int getLootEnemy() {
+        return lootEnemy;
+    }
+
+    private static int expEnemy = 1000;
+
+    private static int lootEnemy = 500;
+
+    private int enemyHealth = 300;
+    private int enemyDmg = 20;
 
     @FXML
     private AnchorPane gameContent;
@@ -43,7 +66,11 @@ public class Game {
     @FXML
     private Label enemyAttackLabel;
 
+    @FXML
+    private Label enemyHealthLabel;
+
     public void initialize(){
+
         enemyAnim();
         Image imageApple = new Image("/img/apple.png");
         Image imageLinux = new Image("/img/linux.png");
@@ -64,6 +91,8 @@ public class Game {
 
         enemy = generateEnemy();
         enemyP.setImage(enemy.getEnemyPic());
+
+        enemyHealthLabel.setText(enemy.getHealth() + "/" + enemyHealth);
 
         EventHandler<ActionEvent> playerAttack = actionEvent -> {
             Random random = new Random();
@@ -106,13 +135,21 @@ public class Game {
                 player.addMoney(enemy.getLoot());
                 if(player.checkIfNextLevel()){
                     player.levelUp();
+                    if(player.getLevel()>=5 && player.getLevel()%5 ==0){
+                        enemyHealth = player.getLevel() * 100;
+                        enemyDmg += player.getLevel() * 2;
+                    }
                 }
                 enemy = generateEnemy();
+                enemyHealthLabel.setText(enemy.getHealth() + "/" + enemyHealth);
                 loadPlayerStats();
                 loadEnemy();
 
             }else {
                 enemyHealthBar.setProgress(enemy.getHealthBar().getProgress());
+                enemyHealthLabel.setText(enemy.getHealth() + "/" + enemyHealth);
+
+
             }
         };
 
@@ -123,7 +160,7 @@ public class Game {
 
     private Enemy generateEnemy(){
         Random random = new Random();
-        return new Enemy(10,300,enemyPictures.get(random.nextInt(enemyPictures.size())),300,1000);
+        return new Enemy(enemyDmg,enemyHealth,enemyPictures.get(random.nextInt(enemyPictures.size())),expEnemy,lootEnemy);
     }
 
     private void loadEnemy(){
