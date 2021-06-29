@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="gameContent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Game">
+<AnchorPane fx:id="gameContent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Game">
    <children>
       <ProgressBar fx:id="enemyHealthBar" layoutX="304.0" layoutY="82.0" prefHeight="30.0" prefWidth="200.0" progress="1.0" />
       <Button fx:id="enemyBut" layoutX="303.0" layoutY="150.0" mnemonicParsing="false">

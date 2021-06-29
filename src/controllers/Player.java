@@ -25,6 +25,14 @@ public class Player {
         nextLevelExpNeeded += 500;
     }
 
+    public int getNextLevelExpNeeded(){
+        return nextLevelExpNeeded;
+    }
+
+    public int getPlayerExp(){
+        return playerExp;
+    }
+
     public boolean checkIfNextLevel(){
         return playerExp >= nextLevelExpNeeded;
     }
@@ -71,9 +79,6 @@ public class Player {
         this.dmg += value;
     }
 
-    public void addLoot(int value){
-        //TODO zrobić loot
-    }
 
     public void addHealth(int value){
         this.health += value;

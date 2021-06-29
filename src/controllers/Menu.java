@@ -103,9 +103,12 @@ public class Menu {
     @FXML
     private ImageView pic4;
 
-    private final FXMLLoader loaderCash = new FXMLLoader(getClass().getResource("/fxml/Shop.fxml"));;
+    private final FXMLLoader loaderCash = new FXMLLoader(getClass().getResource("/fxml/Shop.fxml"));
+    private final FXMLLoader loaderGame = new FXMLLoader(getClass().getResource("/fxml/Game.fxml"));
+
 
     private boolean fistTime = false;
+    private boolean fistTimeGame = false;
 
 
 
@@ -192,16 +195,18 @@ public class Menu {
         hidePictures();
         hideHelper();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Game.fxml"));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(!fistTimeGame) {
+            try {
+                loaderGame.load();
+                fistTimeGame = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        ((Game)loader.getController()).setPlayer(player);
-        ((Game)loader.getController()).setMenu(this);
+        ((Game)loaderGame.getController()).setPlayer(player);
+        ((Game)loaderGame.getController()).setMenu(this);
         gamePane.getChildren().clear();
-        gamePane.getChildren().add(((Game)loader.getController()).getGameContent());
+        gamePane.getChildren().add(((Game)loaderGame.getController()).getGameContent());
     }
 
     //Cash page button in menu
