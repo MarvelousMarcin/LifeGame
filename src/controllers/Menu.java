@@ -110,6 +110,8 @@ public class Menu {
     private boolean fistTime = false;
     private boolean fistTimeGame = false;
 
+    private StatsSaver statsSaver;
+
 
 
     public void initialize(){
@@ -140,6 +142,7 @@ public class Menu {
 
         settBut.addEventHandler(MouseEvent.MOUSE_ENTERED,mouseAnimation(settBut,settCir,SHOW));
         settBut.addEventHandler(MouseEvent.MOUSE_EXITED,mouseAnimation(settBut,settCir,HIDE));
+        settBut.addEventHandler(ActionEvent.ACTION, e-> stats());
 
 
         mainBut.addEventHandler(MouseEvent.MOUSE_ENTERED,mouseAnimation(mainBut,mainCir,SHOW));
@@ -205,6 +208,7 @@ public class Menu {
         }
         ((Game)loaderGame.getController()).setPlayer(player);
         ((Game)loaderGame.getController()).setMenu(this);
+        ((Game)loaderGame.getController()).setStatsSaver(statsSaver);
         gamePane.getChildren().clear();
         gamePane.getChildren().add(((Game)loaderGame.getController()).getGameContent());
     }
@@ -250,6 +254,26 @@ public class Menu {
         gamePane.getChildren().add(((ItemShop)loader.getController()).getItemShopPane());
 
     }
+
+
+    @FXML
+    public void stats(){
+        hidePictures();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Stats.fxml"));
+
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ((Stats)loader.getController()).setStatsSaver(statsSaver);
+        ((Stats)loader.getController()).updateStats();
+        gamePane.getChildren().clear();
+        gamePane.getChildren().add(((Stats)loader.getController()).getStatsPane());
+
+    }
+
 
 
     @FXML
@@ -377,5 +401,9 @@ public class Menu {
         pic2.setVisible(false);
         pic3.setVisible(false);
         pic4.setVisible(false);
+    }
+
+    public void setStatsSaver(StatsSaver statsSaver){
+        this.statsSaver = statsSaver;
     }
 }

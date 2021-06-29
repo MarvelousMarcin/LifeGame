@@ -10,9 +10,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.CubicCurveTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -27,7 +24,6 @@ public class Game {
     private Enemy enemy;
 
     private Menu menu;
-    private boolean bossKilled;
 
     public static void setExpEnemy(int expEnemy) {
         Game.expEnemy = expEnemy;
@@ -50,6 +46,8 @@ public class Game {
     private static int lootEnemy = 100;
 
     private Boss boss;
+
+    private StatsSaver statsSaver;
 
     private int enemyHealth = 300;
     private int enemyDmg = 20;
@@ -100,6 +98,7 @@ public class Game {
         EventHandler<ActionEvent> playerAttack = actionEvent -> {
             Random random = new Random();
             int randVal = random.nextInt(20);
+            statsSaver.addClickMade();
             if(randVal == 0){
                 enemyBut.setDisable(true);
 
@@ -126,16 +125,21 @@ public class Game {
                 tt.play();
 
                 player.getHit(enemy.getEnemyDmg());
+                statsSaver.addHealthLost(enemy.getEnemyDmg());
                 menu.updateUserStats(player);
 
             }
+
             enemyBut.setDisable(false);
 
             int playerDmg = player.getDmg();
             enemy.getDmg(playerDmg);
+            statsSaver.addDmgDealt(playerDmg);
             if(enemy.getHealth() <= 0){
-
+                statsSaver.addMonstersKilled();
                 player.addExp(enemy.getExp());
+                statsSaver.addExpGained(enemy.getExp());
+                statsSaver.addMoneyGained(enemy.getLoot());
                 player.addMoney(enemy.getLoot());
                 if(player.checkIfNextLevel()){
                     player.levelUp();
@@ -145,14 +149,13 @@ public class Game {
                     }
                 }
                 if(player.getLevel()>=5 && player.getLevel() < 30 && player.getLevel()%5 == 0){
-                    bossKilled = false;
                     BossList bossList = new BossList(player.getLevel());
                     boss = bossList.getBoss();
                     enemy = new Enemy(boss.getBossDmg(),boss.getBossHp(),boss.getBossImage(), player.getNextLevelExpNeeded()-player.getPlayerExp(),10000);
                 }else{
                     enemy = generateEnemy();
-                    enemyHealthLabel.setText(enemy.getHealth()+"");
                 }
+                enemyHealthLabel.setText(enemy.getHealth()+"");
                 loadPlayerStats();
                 loadEnemy();
 
@@ -176,10 +179,6 @@ public class Game {
     private void loadEnemy(){
         enemyP.setImage(enemy.getEnemyPic());
         enemyHealthBar.setProgress(enemy.getHealthBar().getProgress());
-    }
-
-    private void loadBoss(){
-
     }
 
     private void loadPlayerStats(){
@@ -206,6 +205,10 @@ public class Game {
         rt.setAutoReverse(true);
         rt.setToAngle(15);
         rt.play();
+    }
+
+    public void setStatsSaver(StatsSaver statsSaver){
+        this.statsSaver = statsSaver;
     }
 
 }
