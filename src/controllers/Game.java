@@ -22,11 +22,37 @@ public class Game {
 
     private Player player;
 
-    private ArrayList<Image> enemyPictures = new ArrayList<>();
+    private final ArrayList<Image> enemyPictures = new ArrayList<>();
 
     private Enemy enemy;
 
     private Menu menu;
+    private boolean bossKilled;
+
+    public static void setExpEnemy(int expEnemy) {
+        Game.expEnemy = expEnemy;
+    }
+
+    public static void setLootEnemy(int lootEnemy) {
+        Game.lootEnemy = lootEnemy;
+    }
+
+    public static int getExpEnemy() {
+        return expEnemy;
+    }
+
+    public static int getLootEnemy() {
+        return lootEnemy;
+    }
+
+    private static int expEnemy = 5000;
+
+    private static int lootEnemy = 100;
+
+    private Boss boss;
+
+    private int enemyHealth = 300;
+    private int enemyDmg = 20;
 
     @FXML
     private AnchorPane gameContent;
@@ -43,7 +69,11 @@ public class Game {
     @FXML
     private Label enemyAttackLabel;
 
+    @FXML
+    private Label enemyHealthLabel;
+
     public void initialize(){
+
         enemyAnim();
         Image imageApple = new Image("/img/apple.png");
         Image imageLinux = new Image("/img/linux.png");
@@ -64,6 +94,8 @@ public class Game {
 
         enemy = generateEnemy();
         enemyP.setImage(enemy.getEnemyPic());
+
+        enemyHealthLabel.setText(enemy.getHealth()+"");
 
         EventHandler<ActionEvent> playerAttack = actionEvent -> {
             Random random = new Random();
@@ -102,17 +134,32 @@ public class Game {
             int playerDmg = player.getDmg();
             enemy.getDmg(playerDmg);
             if(enemy.getHealth() <= 0){
+
                 player.addExp(enemy.getExp());
                 player.addMoney(enemy.getLoot());
                 if(player.checkIfNextLevel()){
                     player.levelUp();
+                    if(player.getLevel()>=5 && player.getLevel()%5 ==0){
+                        enemyHealth = player.getLevel() * 100;
+                        enemyDmg += player.getLevel() * 2;
+                    }
                 }
-                enemy = generateEnemy();
+                if(player.getLevel()>=5 && player.getLevel() < 30 && player.getLevel()%5 == 0){
+                    bossKilled = false;
+                    BossList bossList = new BossList(player.getLevel());
+                    boss = bossList.getBoss();
+                    enemy = new Enemy(boss.getBossDmg(),boss.getBossHp(),boss.getBossImage(), player.getNextLevelExpNeeded()-player.getPlayerExp(),10000);
+                }else{
+                    enemy = generateEnemy();
+                    enemyHealthLabel.setText(enemy.getHealth()+"");
+                }
                 loadPlayerStats();
                 loadEnemy();
 
+
             }else {
                 enemyHealthBar.setProgress(enemy.getHealthBar().getProgress());
+                enemyHealthLabel.setText(enemy.getHealth()+"");
             }
         };
 
@@ -123,12 +170,16 @@ public class Game {
 
     private Enemy generateEnemy(){
         Random random = new Random();
-        return new Enemy(10,300,enemyPictures.get(random.nextInt(enemyPictures.size())),300,1000);
+        return new Enemy(enemyDmg,enemyHealth,enemyPictures.get(random.nextInt(enemyPictures.size())),expEnemy,lootEnemy);
     }
 
     private void loadEnemy(){
         enemyP.setImage(enemy.getEnemyPic());
         enemyHealthBar.setProgress(enemy.getHealthBar().getProgress());
+    }
+
+    private void loadBoss(){
+
     }
 
     private void loadPlayerStats(){

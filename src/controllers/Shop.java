@@ -17,10 +17,6 @@ import java.util.HashSet;
 
 public class Shop {
 
-
-
-
-
     @FXML
     private AnchorPane shopPane;
 
@@ -149,8 +145,9 @@ public class Shop {
             if(lootLevel <= 6 && player.getMoney() >= levels.get(lootLevel).getCost()){
                 paintCir(getCircleLoot(lootLevel));
                 player.takeMoney(levels.get(lootLevel).getCost());
+                Game.setLootEnemy(Game.getLootEnemy()+levels.get(lootLevel).getGain());
+                System.out.println(Game.getLootEnemy());
 
-                //TODO loot add
                 lootLevel++;
                 menu.updateUserStats(player);
             }
@@ -162,7 +159,8 @@ public class Shop {
             if(expLevel <= 6 && player.getMoney() >= levels.get(expLevel).getCost()){
                 paintCir(getCircleExp(expLevel));
                 player.takeMoney(levels.get(expLevel).getCost());
-                //TODO exp add
+                Game.setExpEnemy(Game.getExpEnemy()+levels.get(expLevel).getGain());
+                System.out.println(Game.getExpEnemy());
                 expLevel++;
                 menu.updateUserStats(player);
             }
