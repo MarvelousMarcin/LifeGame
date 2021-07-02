@@ -2,8 +2,6 @@ package controllers;
 
 import javafx.scene.image.Image;
 
-import java.util.ArrayList;
-
 public class BossList {
     private final int playerLevel;
 
@@ -14,7 +12,7 @@ public class BossList {
     public Boss getBoss(){
         switch (playerLevel) {
             case 5 -> {
-                Image image = new Image("/img/friz.gif");
+                Image image = new Image("/img/alienn.png");
                 return new Boss(2000, 50, image);
             }
             case 10 -> {

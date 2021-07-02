@@ -4,6 +4,7 @@ import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -41,9 +42,9 @@ public class Game {
         return lootEnemy;
     }
 
-    private static int expEnemy = 5000;
+    private static int expEnemy = 1125;
 
-    private static int lootEnemy = 100;
+    private static int lootEnemy = 400;
 
     private Boss boss;
 
@@ -125,13 +126,17 @@ public class Game {
                 tt.play();
 
                 player.getHit(enemy.getEnemyDmg());
+                if(player.getHealth()<=0){
+                    endGame();
+                }
                 statsSaver.addHealthLost(enemy.getEnemyDmg());
                 menu.updateUserStats(player);
 
             }
 
             enemyBut.setDisable(false);
-
+            player.addMoney(200);
+            loadPlayerStats();
             int playerDmg = player.getDmg();
             enemy.getDmg(playerDmg);
             statsSaver.addDmgDealt(playerDmg);
@@ -141,6 +146,7 @@ public class Game {
                 statsSaver.addExpGained(enemy.getExp());
                 statsSaver.addMoneyGained(enemy.getLoot());
                 player.addMoney(enemy.getLoot());
+
                 if(player.checkIfNextLevel()){
                     player.levelUp();
                     if(player.getLevel()>=5 && player.getLevel()%5 ==0){
@@ -151,7 +157,7 @@ public class Game {
                 if(player.getLevel()>=5 && player.getLevel() < 30 && player.getLevel()%5 == 0){
                     BossList bossList = new BossList(player.getLevel());
                     boss = bossList.getBoss();
-                    enemy = new Enemy(boss.getBossDmg(),boss.getBossHp(),boss.getBossImage(), player.getNextLevelExpNeeded()-player.getPlayerExp(),10000);
+                    enemy = new Enemy(boss.getBossDmg(),boss.getBossHp(),boss.getBossImage(), player.getNextLevelExpNeeded()-player.getPlayerExp(),20000);
                 }else{
                     enemy = generateEnemy();
                 }
@@ -209,6 +215,17 @@ public class Game {
 
     public void setStatsSaver(StatsSaver statsSaver){
         this.statsSaver = statsSaver;
+    }
+
+    public void endGame(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bank Cleared");
+        alert.setContentText("Money deleted");
+        alert.show();
+        player.setMoney(0);
+        player.setHealth(100);
+        player.addDmg(-player.getDmg()+20);
+
     }
 
 }
