@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="statsPane" prefHeight="493.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Stats">
+   <children>
+      <Label layoutX="133.0" layoutY="70.0" text="Monsters Killed: ">
+         <font>
+            <Font name="Rubik-Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="142.0" layoutY="212.0" text="Damage Dealt:">
+         <font>
+            <Font name="Rubik-Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="145.0" layoutY="142.0" text="Exp Gained: ">
+         <font>
+            <Font name="Rubik-Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="142.0" layoutY="279.0" text="Money Gained:">
+         <font>
+            <Font name="Rubik-Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="151.0" layoutY="350.0" text="Health Lost: ">
+         <font>
+            <Font name="Rubik-Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="145.0" layoutY="422.0" prefHeight="23.0" prefWidth="119.0" text="Clicks Made: ">
+         <font>
+            <Font name="Rubik-Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="monstersKilledLabel" layoutX="490.0" layoutY="69.0" prefHeight="23.0" prefWidth="93.0" text="sadasds">
+         <font>
+            <Font name="Rubik-Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="expGainedLabel" layoutX="490.0" layoutY="130.0" prefHeight="23.0" prefWidth="93.0" text="sadasds">
+         <font>
+            <Font name="Rubik-Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="damageDealtLabel" layoutX="490.0" layoutY="211.0" prefHeight="23.0" prefWidth="93.0" text="sadasds">
+         <font>
+            <Font name="Rubik-Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="moneyGainedLabel" layoutX="490.0" layoutY="278.0" prefHeight="23.0" prefWidth="93.0" text="sadasds">
+         <font>
+            <Font name="Rubik-Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="healthLostLabel" layoutX="490.0" layoutY="349.0" prefHeight="23.0" prefWidth="93.0" text="sadasds">
+         <font>
+            <Font name="Rubik-Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="clickMadeLabel" layoutX="490.0" layoutY="422.0" prefHeight="23.0" prefWidth="93.0" text="sadasds">
+         <font>
+            <Font name="Rubik-Bold" size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

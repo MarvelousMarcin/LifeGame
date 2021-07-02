@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="itemShopPane" prefHeight="515.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ItemShop">
+   <children>
+      <ImageView fitHeight="129.0" fitWidth="130.0" layoutX="157.0" layoutY="62.0">
+         <image>
+            <Image url="@../img/research2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="503.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/sword3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="129.0" fitWidth="130.0" layoutX="513.0" layoutY="294.0">
+         <image>
+            <Image url="@../img/magicwand.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="129.0" fitWidth="130.0" layoutX="157.0" layoutY="294.0">
+         <image>
+            <Image url="@../img/sword4.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="potionBut" layoutX="193.0" layoutY="246.0" mnemonicParsing="false" styleClass="shopItemBut" text="500g">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="sword1But" layoutX="562.0" layoutY="246.0" mnemonicParsing="false" styleClass="shopItemBut" text="10000g">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="sword2But" layoutX="185.0" layoutY="459.0" mnemonicParsing="false" styleClass="shopItemBut" text="20000g">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="wandBut" layoutX="551.0" layoutY="459.0" mnemonicParsing="false" styleClass="shopItemBut" text="100000g">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="191.0" layoutY="198.0" text="+20 hp">
+         <font>
+            <Font name="Rubik-Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="551.0" layoutY="196.0" text="+200 dmg">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="180.0" layoutY="423.0" text="+300 dmg">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="550.0" layoutY="423.0" text="+400 dmg">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
