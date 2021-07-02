@@ -1,5 +1,6 @@
 import controllers.Menu;
 import controllers.Player;
+import controllers.StatsSaver;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,8 +22,10 @@ public class Main extends Application {
             Parent root = loader.load();
 
             Player player = new Player();
+            StatsSaver statsSaver = new StatsSaver();
             Menu menu = loader.getController();
             menu.setPlayer(player);
+            menu.setStatsSaver(statsSaver);
             Scene scene = new Scene(root);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/stylesheets/styles.css")).toExternalForm());
             scene.setFill(Color.TRANSPARENT);

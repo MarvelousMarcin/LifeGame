@@ -4,15 +4,13 @@ import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.CubicCurveTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -27,7 +25,6 @@ public class Game {
     private Enemy enemy;
 
     private Menu menu;
-    private boolean bossKilled;
 
     public static void setExpEnemy(int expEnemy) {
         Game.expEnemy = expEnemy;
@@ -45,11 +42,13 @@ public class Game {
         return lootEnemy;
     }
 
-    private static int expEnemy = 5000;
+    private static int expEnemy = 1125;
 
-    private static int lootEnemy = 100;
+    private static int lootEnemy = 400;
 
     private Boss boss;
+
+    private StatsSaver statsSaver;
 
     private int enemyHealth = 300;
     private int enemyDmg = 20;
@@ -100,6 +99,7 @@ public class Game {
         EventHandler<ActionEvent> playerAttack = actionEvent -> {
             Random random = new Random();
             int randVal = random.nextInt(20);
+            statsSaver.addClickMade();
             if(randVal == 0){
                 enemyBut.setDisable(true);
 
@@ -126,17 +126,27 @@ public class Game {
                 tt.play();
 
                 player.getHit(enemy.getEnemyDmg());
+                if(player.getHealth()<=0){
+                    endGame();
+                }
+                statsSaver.addHealthLost(enemy.getEnemyDmg());
                 menu.updateUserStats(player);
 
             }
-            enemyBut.setDisable(false);
 
+            enemyBut.setDisable(false);
+            player.addMoney(200);
+            loadPlayerStats();
             int playerDmg = player.getDmg();
             enemy.getDmg(playerDmg);
+            statsSaver.addDmgDealt(playerDmg);
             if(enemy.getHealth() <= 0){
-
+                statsSaver.addMonstersKilled();
                 player.addExp(enemy.getExp());
+                statsSaver.addExpGained(enemy.getExp());
+                statsSaver.addMoneyGained(enemy.getLoot());
                 player.addMoney(enemy.getLoot());
+
                 if(player.checkIfNextLevel()){
                     player.levelUp();
                     if(player.getLevel()>=5 && player.getLevel()%5 ==0){
@@ -145,14 +155,13 @@ public class Game {
                     }
                 }
                 if(player.getLevel()>=5 && player.getLevel() < 30 && player.getLevel()%5 == 0){
-                    bossKilled = false;
                     BossList bossList = new BossList(player.getLevel());
                     boss = bossList.getBoss();
-                    enemy = new Enemy(boss.getBossDmg(),boss.getBossHp(),boss.getBossImage(), player.getNextLevelExpNeeded()-player.getPlayerExp(),10000);
+                    enemy = new Enemy(boss.getBossDmg(),boss.getBossHp(),boss.getBossImage(), player.getNextLevelExpNeeded()-player.getPlayerExp(),20000);
                 }else{
                     enemy = generateEnemy();
-                    enemyHealthLabel.setText(enemy.getHealth()+"");
                 }
+                enemyHealthLabel.setText(enemy.getHealth()+"");
                 loadPlayerStats();
                 loadEnemy();
 
@@ -176,10 +185,6 @@ public class Game {
     private void loadEnemy(){
         enemyP.setImage(enemy.getEnemyPic());
         enemyHealthBar.setProgress(enemy.getHealthBar().getProgress());
-    }
-
-    private void loadBoss(){
-
     }
 
     private void loadPlayerStats(){
@@ -206,6 +211,21 @@ public class Game {
         rt.setAutoReverse(true);
         rt.setToAngle(15);
         rt.play();
+    }
+
+    public void setStatsSaver(StatsSaver statsSaver){
+        this.statsSaver = statsSaver;
+    }
+
+    public void endGame(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Bank Cleared");
+        alert.setContentText("Money deleted");
+        alert.show();
+        player.setMoney(0);
+        player.setHealth(100);
+        player.addDmg(-player.getDmg()+20);
+
     }
 
 }

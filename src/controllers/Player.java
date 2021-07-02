@@ -15,7 +15,7 @@ public class Player {
         level = 1;
         playerExp = 0;
         health = 100;
-        money = 100000;
+        money = 0;
         dmg = 20;
     }
 
