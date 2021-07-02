@@ -12,7 +12,7 @@ Application based on JavaFX, HTML, and CSS
 You just need to attack the enemies, clicking on them with your mouse. Their health gonna go down and when it gets to
 0 you will get money, exp and fame. Just kidding just money and exp. With your loot, you have opportunity to but some cool
 staff in the shop or just upgrade one of four basic stats. The choice is yours. Have fun and remember - you will find some obnoxious,
-evil bosses.
+evil bosses on (unfortunately) not so long path.
 
 ## Preview of already implemented gameplay
 
