@@ -5,6 +5,9 @@ LifeGame is a simple clicker focused on defeating enemies and reaching
 new levels, gaining more and more money and weapons. It's very simple, easy
 to understand and of course gives a lot of fun.
 
+### Technology 
+Application based on JavaFX, HTML, and CSS
+
 ## Preview of already implemented gameplay
 
 ### Entry Screen
