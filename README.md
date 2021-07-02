@@ -5,7 +5,7 @@ LifeGame is a simple clicker focused on defeating enemies and reaching
 new levels, gaining more and more money and weapons. It's very simple, easy
 to understand and of course gives a lot of fun.
 
-##Preview of already implemented gameplay
+## Preview of already implemented gameplay
 
 ### Entry Screen
 
